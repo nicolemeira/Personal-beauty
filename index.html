@@ -87,20 +87,19 @@
         #loader {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: var(--primary-black); 
+            background-color: var(--primary-black);
             z-index: 9999;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            transition: opacity 0.5s ease;
         }
         #loader img {
-            width: 150px; /* Logo maior */
-            height: 150px;
+            width: 90px; height: 90px;
             object-fit: contain;
+            mix-blend-mode: multiply;
             animation: pulseLogo 2s infinite ease-in-out;
-        }
-
         }
         #loader .line-progress {
             width: 120px; height: 2px;
@@ -168,16 +167,13 @@
 
         /* --- HEADER & NAVIGATION (Correção definitiva da Logo PNG com blend-mode) --- */
         header {
-        position: fixed;
-        top: 0; left: 0; width: 100%;
-        z-index: 900;
-        background: #2A141D; /* Rosa escuro elegante */
-        padding: 15px 0;
-        transition: var(--transition-premium);
-    }
-    .logo-text { color: var(--pure-white) !important; }
-    .nav-link { color: var(--pure-white) !important; }
-
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 900;
+            background: transparent;
+            transition: var(--transition-premium);
+            padding: 10px 0;
+        }
         header.scrolled {
             background: var(--glass-bg);
             backdrop-filter: blur(15px);
@@ -665,16 +661,15 @@
 
         /* --- REGRAS DE OURO PARA RESPONSIVIDADE (MOBILE EXPERT) --- */
         @media(max-width: 992px) {
-                        .nav-menu {
+            .nav-menu {
                 position: fixed; top: 0; right: -100%; width: 75%; height: 100vh;
-                background: #2A141D; /* Aqui está o fundo escuro para o mobile */
+                background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
                 flex-direction: column; justify-content: center; align-items: center; gap: 30px; 
                 transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
                 box-shadow: -5px 0 25px rgba(0,0,0,0.04); z-index: 1000;
             }
-            
             .nav-menu.open { right: 0; }
-            .menu-toggle span { background-color: var(--pure-white) !important; }
+            .menu-toggle { display: flex; }
             .about-grid, .contact-layout, .reviews-layout { grid-template-columns: 1fr; gap: 30px; }
             
             /* Ajuste específico para conter a segunda imagem no celular */
@@ -709,7 +704,7 @@
 
     <!-- LOADER PERSONALIZADO -->
     <div id="loader">
-        <img src="https://i.ibb.co/Z6djgj7Y/IMG-1916.png" alt="Nicole Meira Logo">
+        <img src="https://i.ibb.co/pjHjm2Hz/36200186-E80-C-43-D5-9-C50-12948-D897-DB6.jpg" alt="Nicole Meira Logo">
         <div class="line-progress"></div>
     </div>
 
@@ -717,7 +712,7 @@
     <header id="header">
         <div class="nav-container">
             <a href="#home" class="logo-box">
-                <img src="https://i.ibb.co/Z6djgj7Y/IMG-1916.png" alt="Nicole Meira Logo">
+                <img src="https://i.ibb.co/pjHjm2Hz/36200186-E80-C-43-D5-9-C50-12948-D897-DB6.jpg" alt="Nicole Meira Logo">
                 <div class="logo-text">
                     Nicole Meira
                     <span>Personal Beauty</span>
