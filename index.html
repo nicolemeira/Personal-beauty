@@ -1104,14 +1104,130 @@
             .reviews-grid { grid-template-columns: 1fr; }
         }
 
-        @media (max-width: 480px) {
+        .intro-apple{
+    position: fixed;
+    inset: 0;
+    background: #0b0b0f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+.intro-blur{
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(244,93,155,0.15), transparent 60%);
+}
+
+.intro-center{
+    text-align: center;
+    color: white;
+    z-index: 2;
+}
+
+.intro-logo-big{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.intro-center h1{
+    font-family: var(--font-accent);
+    font-size: 3rem;
+}
+
+.intro-center p{
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    color: #F45D9B;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.intro-nav{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.intro-nav a{
+    color: rgba(255,255,255,0.7);
+    font-size: 0.8rem;
+    cursor: pointer;
+    position: relative;
+}
+
+.intro-nav a::after{
+    content:"";
+    position:absolute;
+    bottom:-4px;
+    left:0;
+    width:0%;
+    height:1px;
+    background:#F45D9B;
+    transition:0.3s;
+}
+
+.intro-nav a:hover::after{
+    width:100%;
+}
+
+.enter-apple{
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 10px 25px;
+    color: white;
+    cursor: pointer;
+}
+
+.enter-apple:hover{
+    background:#F45D9B;
+    border-color:#F45D9B;
+}@media (max-width: 480px) {
             .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
             .gallery-item { height: 160px; }
             .grid-services { grid-template-columns: 1fr; }
-        }
+        } .music-btn{
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    z-index: 9999;
+    backdrop-filter: blur(10px);
+}
     </style>
 </head>
 <body>
+    <div id="introScreen" class="intro-apple">
+    <div class="intro-blur"></div>
+
+    <div class="intro-center">
+        <img src="https://i.ibb.co/Z6djgj7Y/IMG-1916.png" class="intro-logo-big">
+
+        <h1>Nicole Meira</h1>
+        <p>Personal Beauty Experience</p>
+
+        <nav class="intro-nav">
+            <a onclick="goToSection('inicio')">Início</a>
+            <a onclick="goToSection('sobre')">Sobre</a>
+            <a onclick="goToSection('servicos')">Serviços</a>
+            <a onclick="goToSection('galeria')">Galeria</a>
+            <a onclick="goToSection('orcamento')">Orçamento</a>
+            <a onclick="goToSection('avaliacoes')">Avaliações</a>
+        </nav>
+
+        <button class="enter-apple" onclick="closeIntro()">Entrar</button>
+    </div>
+</div>
 
     <div class="loader-container" id="loader">
         <div class="loader-content">
@@ -1761,6 +1877,10 @@
             }
             renderReviews();
         });
-    </script>
+    </script><audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_5c7a7b9c6c.mp3?filename=soft-piano-ambient-121429.mp3">
+</audio>
+
+<button id="musicToggle" class="music-btn">🔇</button>
 </body>
 </html>
