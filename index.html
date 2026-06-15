@@ -1126,56 +1126,6 @@
             window.open(urlWhatsApp, '_blank');
         });
 
-        // Review System
-        const reviewForm = document.getElementById('reviewForm');
-        const reviewsContainer = document.getElementById('reviewsContainer');
-        const averageRatingEl = document.getElementById('averageRating');
-        const averageStarsEl = document.getElementById('averageStars');
-        const totalReviewsCountEl = document.getElementById('totalReviewsCount');
-
-        let avaliacoesData = JSON.parse(localStorage.getItem('nicole_meira_real_reviews')) || [];
-
-        function renderReviews() {
-            reviewsContainer.innerHTML = '';
-            if(avaliacoesData.length === 0) {
-                reviewsContainer.innerHTML = '<p style="color:var(--text-muted); font-style:italic; font-size:0.9rem; padding: 10px 0;">Nenhum depoimento enviado ainda.</p>';
-                averageRatingEl.innerText = "5.0";
-                averageStarsEl.innerText = "★★★★★";
-                totalReviewsCountEl.innerText = "18 avaliações";
-                return;
-            }
-            let somaNotas = 0;
-            avaliacoesData.forEach(rev => {
-                somaNotas += parseInt(rev.nota);
-                let estrelasStr = '★'.repeat(rev.nota) + '☆'.repeat(5 - rev.nota);
-                const card = document.createElement('div');
-                card.className = 'review-card';
-                card.innerHTML = `
-                    <div class="review-card-header">
-                        <div><span class="review-author">${rev.nome}</span><span class="review-city"> - ${rev.cidade}</span></div>
-                        <div style="color:#FFD700;">${estrelasStr}</div>
-                    </div>
-                    <p class="review-text">${rev.texto ? rev.texto : 'Excelente atendimento!'}</p>
-                `;
-                reviewsContainer.appendChild(card);
-            });
-            let media = (somaNotas / avaliacoesData.length).toFixed(1);
-            averageRatingEl.innerText = media;
-            averageStarsEl.innerText = '★'.repeat(Math.round(media)) + '☆'.repeat(5 - Math.round(media));
-            totalReviewsCountEl.innerText = `${avaliacoesData.length} avaliações`;
-        }
-
-        reviewForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            avaliacoesData.unshift({
-                nome: document.getElementById('revNome').value,
-                cidade: document.getElementById('revCidade').value,
-                nota: document.getElementById('revNota').value,
-                texto: document.getElementById('revTexto').value
-            });
-            localStorage.setItem('nicole_meira_real_reviews', JSON.stringify(avaliacoesData));
-            reviewForm.reset();
-            renderReviews();
         });
         renderReviews();
     </script>
